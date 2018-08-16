@@ -1,0 +1,15 @@
+Package: PSCmb
+Title: Repeated Functions for PSC Visualizations: Market Briefings
+Version: 0.0.0.9000
+Authors@R: person("Marielle","Roth", email = "Roth@pscouncil.org",
+                  role = c("aut", "cre"))
+Description: Tools for supporting PSC Market Briefings
+Depends: R (>= 3.5.1)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: tidyr,ggplot2, grid, gridExtra, svglite, ggrepel, readr, dplyr, RColorBrewer
+RoxygenNote: 6.1.0
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
