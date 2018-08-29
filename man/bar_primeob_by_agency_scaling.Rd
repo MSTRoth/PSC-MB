@@ -6,7 +6,7 @@
 Range and Bottom Range (two scalings)}
 \usage{
 bar_primeob_by_agency_scaling(company_name, FY = 1, n_agencies = 6,
-  scale = 1e+06, scale_text = "Millions", FY_range, top_range,
+  scale = 1000000, scale_text = "Millions", FY_range, top_range,
   bottom_range, optional_third_range = NULL, grid_division,
   num_size = 4, h = 6, w = 11)
 }

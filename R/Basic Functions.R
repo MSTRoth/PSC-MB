@@ -92,8 +92,8 @@ plot.first <- function (data.frame, facet_var, num_size, scale_text){
     geom_text_repel(aes(label = round(total_transaction_value, digits = 1), vjust = 1.5), size = num_size)+
     scale_fill_manual("Fiscal Year", values = c("2014" = "steelblue1", "2015" = "orangered", "2016" = "grey70", "2017" = "orange", "2018" = "olivedrab3")) +
     facet_grid(noquote(paste("~",facet_var, sep = "")), labeller = label_wrap_gen(20))+
-    labs(y = paste("Contract Obligations (in) ", scale_text, sep = "")) +
-    theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.title.x=element_blank())+ guides(fill="none")
+    labs(y = paste("Contract Obligations (in ", scale_text, ")", sep = "")) +
+    theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(), axis.title.x=element_blank())
 
   plot
 }
@@ -152,3 +152,28 @@ plot.middle <- function (data.frame, facet_var, num_size){
 
 }
 
+#' #' Extract a common legend for multiple plots
+#' #'
+#' #'@param data.frame data frame
+#' #'@param facet_var  The facetted variable for facet_grid()
+#' #'@param num_size size of the text that labels the total transaction value in the bar chart; generally 3 or 4
+#' #'
+#' #'@return ggplot
+#' #'
+#' #'@details https://github.com/hadley/ggplot2/wiki/Share-a-legend-between-two-ggplot2-graphs
+#' #'
+#' #'
+#' #'@export
+#' 
+#' g_legend<-function(a.gplot){
+#'   tmp <- ggplot_gtable(ggplot_build(a.gplot))
+#'   leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+#'   legend <- tmp$grobs[[leg]]
+#'   return(legend)}
+#' 
+#' mylegend<-g_legend(p1)
+#' 
+#' p3 <- grid.arrange(arrangeGrob(p1 + theme(legend.position="none"),
+#'                                p2 + theme(legend.position="none"),
+#'                                nrow=1),
+#'                    mylegend, nrow=2,heights=c(10, 1))
