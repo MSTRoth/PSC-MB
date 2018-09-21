@@ -26,3 +26,6 @@ a bar chart
 \description{
 Total Contract Spending, divided into services and products, based on type
 }
+\details{
+Returns a stacked bar chart with DPAP services defined and products, with labels for total services and products
+}

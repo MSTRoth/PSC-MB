@@ -67,8 +67,7 @@ bar_primeob_by_agency <- function(company_name,
   ###Create Barplot and Save as JPG
   plot <- plot.one(data.agency.year, "funding_agency", num_size, scale_text, company_name, FY_range)
 
-  plot
-  data.agency.year
+ return(plot)
 
   ggsave(paste(company_name, " Contract Obligations by Agency.jpg", sep = ""), plot,
          width = w, height = h, units = "in")
@@ -263,7 +262,7 @@ bar_primeob_by_agency_scaling <- function(company_name,
            width = w, height = h, units = "in")
     data.agency.year.all <- rbind(data.agency.year.top, data.agency.year.middle, data.agency.year.bottom)
   }
-  plot.all
+  return(plot.all)
   data.agency.year.all
 
 }
@@ -285,8 +284,6 @@ bar_primeob_by_agency_scaling <- function(company_name,
 #' @param FY Fiscal year to filter out, commonly the current fiscal year due to incomplete data
 #' @param scale Dollar scale; default to 1000000
 #' @param scale_text Dollar scale as text; defaults to Millions
-#' @param grid_division respective sizes of ranges to arrange the final grid.  This generally is
-#' the number of agencies in each plot written as a vector
 #' @param num_size Size of heading text for agency names, default to 3.  Note that the fewer
 #' the agencies used, the larger the text should be
 #' @param h Height of saved chart; defaults to 6
@@ -320,7 +317,6 @@ bar_primeob_by_agency_choosing <- function(company_name,
                                            FY = 1,
                                            scale = 1000000,
                                            scale_text = "Millions",
-                                           grid_division = NULL,
                                            FY_range,
                                            num_size = 3,
                                            h = 6,
@@ -348,10 +344,13 @@ bar_primeob_by_agency_choosing <- function(company_name,
       plot1 <- plot.first(data.agency.year1, "funding_agency", num_size, scale_text)
       plot2 <- plot.middle(data.agency.year2, "funding_agency", num_size)
       
-      legend <- g_legend(plot1 + theme(legend.position='right'))
+      legend <- gtable_filter(ggplot_gtable(ggplot_build(plot1)), "guide-box")
 
-      plot.all<-grid_arrange_shared_legend(plot1, plot2, legend, widths = grid_division,
-                             top = textGrob(paste(company_name, "Contract Obligations by Agency ", FY_range, sep = ""), gp = gpar(fontsize = 24)), bottom = "Fiscal Year")
+      plot.all<-grid.arrange(plot1 + theme(legend.position='hidden'), 
+                             plot2 + theme(legend.position='hidden'), 
+                             legend, ncol = 3,
+                             top = textGrob(paste(company_name, "Contract Obligations by Agency ", FY_range, sep = ""), 
+                                            gp = gpar(fontsize = 24)), bottom = "Fiscal Year")
       data.agency.year.all <- rbind(data.agency.year1, data.agency.year2)
 
     }
@@ -366,9 +365,12 @@ bar_primeob_by_agency_choosing <- function(company_name,
         plot2 <- plot.middle(data.agency.year2, "funding_agency", num_size)
         plot3 <- plot.middle(data.agency.year3, "funding_agency", num_size)
         
-        legend <- g_legend(plot1 + theme(legend.position='right'))
+        legend <- gtable_filter(ggplot_gtable(ggplot_build(plot1)), "guide-box")
 
-        plot.all<-grid_arrange_shared_legend(plot1, plot2, plot3, legend, widths = grid_division,
+        plot.all<-grid.arrange(plot1 + theme(legend.position='hidden'), 
+                               plot2 + theme(legend.position='hidden'), 
+                               plot3 + theme(legend.position='hidden'), 
+                               legend, ncol = 4,
                                top = textGrob(paste(company_name, "Contract Obligations by Agency ", FY_range, sep = ""),
                                               gp = gpar(fontsize = 24)), bottom = "Fiscal Year")
         data.agency.year.all <- rbind(data.agency.year1, data.agency.year2, data.agency.year3)
@@ -387,9 +389,13 @@ bar_primeob_by_agency_choosing <- function(company_name,
           plot3 <- plot.middle(data.agency.year3, "funding_agency", num_size)
           plot4 <- plot.middle(data.agency.year4, "funding_agency", num_size)
 
-          legend <- g_legend(plot1 + theme(legend.position='right'))
+          legend <- gtable_filter(ggplot_gtable(ggplot_build(plot1)), "guide-box")
           
-          plot.all<-grid_arrange_shared_legend(plot1, plot2, plot3, plot4, legend, widths = grid_division,
+          plot.all<-grid.arrange(plot1 + theme(legend.position='hidden'), 
+                                 plot2 + theme(legend.position='hidden'), 
+                                 plot3 + theme(legend.position='hidden'), 
+                                 plot4 + theme(legend.position='hidden'), 
+                                 legend, ncol = 5,
                                  top = textGrob(paste(company_name, "Contract Obligations by Agency ", FY_range, sep = ""),
                                                 gp = gpar(fontsize = 24)), bottom = "Fiscal Year")
           data.agency.year.all <- rbind(data.agency.year1, data.agency.year2, data.agency.year3, data.agency.year4)
@@ -409,7 +415,12 @@ bar_primeob_by_agency_choosing <- function(company_name,
           plot4 <- plot.middle(data.agency.year4, "funding_agency", num_size)
           plot5 <- plot.middle(data.agency.year5, "funding_agency", num_size)
 
-          plot.all<-grid.arrange(plot1, plot2, plot3, plot4, plot5, legend, widths = grid_division, 
+          plot.all<-grid.arrange(plot1 + theme(legend.position='hidden'),
+                                 plot2 + theme(legend.position='hidden'),
+                                 plot3 + theme(legend.position='hidden'),
+                                 plot4 + theme(legend.position='hidden'),
+                                 plot5 + theme(legend.position='hidden'),
+                                 legend, ncol = 6, 
                                  top = textGrob(paste(company_name, "Contract Obligations by Agency ", FY_range, sep = ""),
                                                 gp = gpar(fontsize = 24)), bottom = "Fiscal Year")
 

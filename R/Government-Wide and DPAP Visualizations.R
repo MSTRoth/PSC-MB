@@ -80,7 +80,7 @@ plot -> ggplot(data.civdef, aes(x = civ_def, y = total_obligations, fill = facto
 #'
 #'@return a bar chart
 #'
-#'@detail Returns a stacked bar chart with DPAP services defined and products, with labels for total services and products
+#'@details Returns a stacked bar chart with DPAP services defined and products, with labels for total services and products
 #'
 #'@export
 

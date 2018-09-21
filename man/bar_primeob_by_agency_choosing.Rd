@@ -11,8 +11,7 @@ bar_primeob_by_agency_choosing(company_name, funding_agency_type1,
   funding_agency_name3 = NULL, funding_agency_type4 = NULL,
   funding_agency_name4 = NULL, funding_agency_type5 = NULL,
   funding_agency_name5 = NULL, FY = 1, scale = 1000000,
-  scale_text = "Millions", grid_division = NULL, FY_range,
-  num_size = 3, h = 6, w = 11)
+  scale_text = "Millions", FY_range, num_size = 3, h = 6, w = 11)
 }
 \arguments{
 \item{company_name}{Name of the company, used in filename and chart title}
@@ -42,9 +41,6 @@ bar_primeob_by_agency_choosing(company_name, funding_agency_type1,
 \item{scale}{Dollar scale; default to 1000000}
 
 \item{scale_text}{Dollar scale as text; defaults to Millions}
-
-\item{grid_division}{respective sizes of ranges to arrange the final grid.  This generally is
-the number of agencies in each plot written as a vector}
 
 \item{num_size}{Size of heading text for agency names, default to 3.  Note that the fewer
 the agencies used, the larger the text should be}
