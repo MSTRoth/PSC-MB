@@ -63,7 +63,7 @@ plot.one <- function (data.frame, facet_var, num_size, scale_text = "Millions", 
     geom_text(aes(label = round(total_transaction_value, digits = 1), vjust = 1.5), size = num_size)+
     scale_fill_manual("Fiscal Year", values = c("2014" = "steelblue1", "2015" = "orangered", "2016" = "grey70", "2017" = "orange", "2018" = "olivedrab3")) +
     facet_grid(noquote(paste("~",facet_var, sep = "")), labeller = label_wrap_gen(20))+
-    labs(x="Fiscal Year", y = paste("Contract Obligations (in) ", scale_text, sep = ""),
+    labs(x="Fiscal Year", y = paste("Contract Obligations (in ", scale_text, ")", sep = ""),
          title = paste(company_name, " Contract Obligations by Agency ", FY_range, sep = ""))+
     theme(plot.title = element_text(hjust = 0.5, size = 24, face = "bold"),
           axis.text.x = element_blank(), axis.ticks.x = element_blank())
