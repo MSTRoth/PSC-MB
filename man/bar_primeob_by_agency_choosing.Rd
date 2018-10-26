@@ -10,7 +10,7 @@ bar_primeob_by_agency_choosing(company_name, funding_agency_type1,
   funding_agency_name2 = NULL, funding_agency_type3 = NULL,
   funding_agency_name3 = NULL, funding_agency_type4 = NULL,
   funding_agency_name4 = NULL, funding_agency_type5 = NULL,
-  funding_agency_name5 = NULL, FY = 1, scale = 1000000,
+  funding_agency_name5 = NULL, FY = 1, scale = 1e+06,
   scale_text = "Millions", FY_range, num_size = 3, h = 6, w = 11)
 }
 \arguments{

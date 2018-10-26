@@ -94,6 +94,8 @@ total_contract_spending <- function(type,
                        type, ".csv", sep = ""))
 
 
+setwd("C:/Users/Roth/Documents/Market Briefings/Data/Government-Wide data/")
+  
 data$`DPAP Category` <- factor(data$`DPAP Category`,
                                   levels = c("Products", "Construction Services",
                                              "Electronic & Communication Services",
@@ -125,14 +127,16 @@ label_height <- DPAP %>%
 
 
 
+
+
 plot <- ggplot(label_height, aes(x = `Fiscal Year`, y = `$ billions`,
                          fill = `DPAP Category`)) +
   geom_bar(stat = "identity") +
   geom_text(aes(x = `Fiscal Year`, label = round(`pors$`, digits = 2), y = label_y2), size = num_size, vjust = 1.5, check_overlap = TRUE)+
-  ##############################scale_fill_brewer(name = "Services/Products Contract Category", palette = "Set3") +
+  scale_fill_brewer(name = "Services/Products Contract Category", palette = "Set3") +
   labs(x="Fiscal Year", y = "Contract Obligations (in) Billions",
        title = paste(type, " Total Contract Spending", sep = ""))+
-  theme(plot.title = element_text(hjust = 0.5, size = 24, face = "bold"), axis.ticks.x = element_blank())
+  theme(plot.title = element_text(hjust = 0.5, size = 24, face = "bold"), axis.ticks.x = element_blank()) 
 
 ggsave(paste(type, " Total Contract Spending Service Product ", FY_range, file_ext, sep = ""), plot,
        width = w, height = h, units = "in")

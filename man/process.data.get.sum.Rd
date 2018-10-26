@@ -5,7 +5,7 @@
 \title{Process contract obligations data from BGov, yielding the total transaction value  by funding agency and fiscal year}
 \usage{
 process.data.get.sum(data.frame, funding_agency_name, funding_agency_type,
-  FY = 1, scale = 1000000)
+  FY = 1, scale = 1e+06)
 }
 \arguments{
 \item{data.frame}{data frame}

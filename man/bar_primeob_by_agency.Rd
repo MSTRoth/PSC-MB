@@ -5,7 +5,7 @@
 \title{Creating a basic, unscaled bar chart of Prime Contract Obligations by Agency}
 \usage{
 bar_primeob_by_agency(company_name, FY = 1, n_agencies = 6,
-  scale = 1000000, scale_text = "Millions", FY_range, num_size = 3,
+  scale = 1e+06, scale_text = "Millions", FY_range, num_size = 3,
   h = 6, w = 11)
 }
 \arguments{
